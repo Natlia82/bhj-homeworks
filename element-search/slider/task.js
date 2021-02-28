@@ -1,31 +1,26 @@
-const prev = document.getElementsByClassName("slider__arrow_prev");
-const next = document.getElementsByClassName("slider__arrow_next");
-let n = 0;
-let pictures = document.getElementsByClassName("slider__item");
-let number = pictures.length;
+const prev = document.querySelector(".slider__arrow_prev");
+const next = document.querySelector(".slider__arrow_next");
 
-function funNext() {
-    pictures[n].className = "slider__item";
-    n++;
-    if (n === number) {
-        n = 0;
-    }
-    pictures[n].className += " slider__item_active";
+let picActive = document.getElementsByClassName("slider__item");
+let pictures = Array.from(picActive);
+
+next.onclick = function() {
+    let activ = ElemetActiv();
+    activ + 1 < picActive.length ? picActive[activ + 1].classList.add("slider__item_active") : picActive[0].classList.add("slider__item_active");
+
 }
 
-function funPrev() {
-    pictures[n].className = "slider__item";
-    n--;
-    if (n < 0) {
-        n = number - 1;
-    }
-    pictures[n].className += " slider__item_active";
+prev.onclick = function() {
+    let activ = ElemetActiv();
+    activ > 1 ? picActive[activ - 1].classList.add("slider__item_active") : picActive[picActive.length - 1].classList.add("slider__item_active");
+
 }
 
-prev[0].onclick = function() {
-    funPrev();
-}
-
-next[0].onclick = function() {
-    funNext();
+function ElemetActiv() {
+    console.log(picActive.length);
+    let k = document.querySelector(".slider__item_active");
+    let n = pictures.indexOf(k);
+    k.classList.remove("slider__item_active");
+    console.log(n);
+    return n;
 }
