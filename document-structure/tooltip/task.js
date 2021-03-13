@@ -1,6 +1,6 @@
 const cl = document.getElementsByClassName("has-tooltip");
 
-function press() {
+function press(event) {
     const l = document.getElementsByClassName("tooltip");
     l[0].style.display = "block";
     l[0].innerText = event.target.getAttribute("title");
