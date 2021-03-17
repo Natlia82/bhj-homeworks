@@ -2,7 +2,7 @@ const insert = document.getElementById("tasks__add");
 let taskDelete = document.getElementsByClassName('task__remove');
 const taskList = document.getElementById('tasks__list');
 
-function InsertFunct(event) {
+function addingTasks(event) {
     const task = document.getElementById('task__input');
 
     let elem = document.createElement("div");
@@ -11,10 +11,10 @@ function InsertFunct(event) {
     taskList.appendChild(elem);
     taskDelete = document.getElementsByClassName('task__remove');
     taskDelete[taskDelete.length - 1].addEventListener("click", () => {
-        alert("удаляем");
         taskList.removeChild(elem)
     });
+    task.value = "";
     event.preventDefault();
 }
 
-insert.addEventListener("click", InsertFunct);
+insert.addEventListener("click", addingTasks);

@@ -31,29 +31,26 @@ for (let i = 0; i < maxnew.length; i++) {
 
     button[i].addEventListener("click", () => {
         let basketId = button[i].closest('.product').dataset.id;
-        let flag = false;
         const cartProduct = document.getElementsByClassName('cart__product');
 
         for (let j = 0; j < cartProduct.length; j++) {
             if (cartProduct[j].dataset.id == basketId) {
-                flag = true;
-                document.getElementsByClassName('cart__product-count')[j].textContent = valNew[i].textContent;
+
+                document.getElementsByClassName('cart__product-count')[j].textContent = +document.getElementsByClassName('cart__product-count')[j].textContent + +valNew[i].textContent;
+                return;
             }
         }
 
-        if (!flag) {
-            let basketImg = button[i].closest('.product__controls').previousElementSibling.getAttribute('src');
 
-            let basket = document.createElement('div');
-            basket.classList.add('cart__product');
-            basket.dataset['id'] = basketId;
-            basket.innerHTML = '<img class="cart__product-image" src="' +
-                basketImg + '"><div class="cart__product-count">' +
-                valNew[i].textContent + '</div>';
-            basketAll.insertAdjacentElement("beforeend", basket);
-        }
+        let basketImg = button[i].closest('.product__controls').previousElementSibling.getAttribute('src');
 
-
+        let basket = document.createElement('div');
+        basket.classList.add('cart__product');
+        basket.dataset['id'] = basketId;
+        basket.innerHTML = '<img class="cart__product-image" src="' +
+            basketImg + '"><div class="cart__product-count">' +
+            valNew[i].textContent + '</div>';
+        basketAll.insertAdjacentElement("beforeend", basket);
 
     });
 
