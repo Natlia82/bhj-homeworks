@@ -1,8 +1,9 @@
+const registration = document.getElementById('signin');
 if (localStorage.id) {
     document.querySelector('#user_id').textContent = localStorage.id;
     document.getElementById('welcome').classList.add('welcome_active');
 } else {
-    const registration = document.getElementById('signin');
+
     registration.classList.add("signin_active");
 }
 
@@ -23,8 +24,9 @@ submittingForm.addEventListener('click', (event) => {
         console.log(data.success);
         if (data.success) {
             localStorage.setItem('id', data.user_id);
-            document.querySelector('#user_id').value = data.user_id;
+            document.querySelector('#user_id').textContent = data.user_id;
             document.getElementById('welcome').classList.add('welcome_active');
+            registration.classList.remove("signin_active");
         } else alert('Неверный логин/пароль');
     }
 
